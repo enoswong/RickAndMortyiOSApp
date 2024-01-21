@@ -26,7 +26,6 @@ final class RMRequest{
         
         if(!pathComponents.isEmpty)
         {
-            string += "/"
             pathComponents.forEach({
                 string += "/\($0)"
             })
@@ -52,9 +51,13 @@ final class RMRequest{
     
     public let httpMethod = "GET"
     
-    public init(endpoint: RMEndpoint, pathComponents: [String] = [], queryParameters: [URLQueryItem] = []) {
+    public init(endpoint: RMEndpoint, pathComponents: Set<String> = [], queryParameters: [URLQueryItem] = []) {
         self.endpoint = endpoint
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
     }
+}
+
+extension RMRequest{
+    static let listCharactersRequests = RMRequest(endpoint: .character)
 }
